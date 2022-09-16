@@ -19,7 +19,6 @@
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
     "pg": "^8.8.0",
-    "require": "^2.4.20",
     "sequelize": "^6.21.6",
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.1.0"

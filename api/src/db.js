@@ -70,8 +70,8 @@ const { Operation, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-User.belongsToMany(Operation, { through: "user_operation" });
-Operation.belongsTo(User, { through: "user_operation" });
+User.hasMany(Operation);
+Operation.belongsTo(User);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
