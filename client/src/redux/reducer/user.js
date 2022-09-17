@@ -12,6 +12,7 @@ import {
   NEW_OPERATION,
   MODIFY_OPERATION,
   DELETE_OPERATION,
+  NEW_OPERATION_MODAL,
 } from "../actions/operation";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   users: [],
   operation: {},
   operations: [],
+  newOperationModal: false,
 };
 
 export default function userReducer(state = initialState, { type, payload }) {
@@ -37,12 +39,14 @@ export default function userReducer(state = initialState, { type, payload }) {
       return { ...state, operations: payload };
     case GET_OPERATION:
       return { ...state, operation: payload };
-    case NEW_OPERATION:
+    case NEW_OPERATION: ////////////////////////////////
       return { ...state, user: payload };
     case MODIFY_OPERATION:
       return { ...state, user: payload };
     case DELETE_OPERATION:
       return { ...state, user: payload };
+    case NEW_OPERATION_MODAL:
+      return { ...state, newOperationModal: !state.newOperationModal };
 
     default:
       return state;

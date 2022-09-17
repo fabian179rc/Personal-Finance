@@ -25,10 +25,6 @@ operationRoute.get("/:operation_id", async (req, res, next) => {
     const operation = await Operation.findByPk(operation_id);
     if (!operation)
       return res.status(404).json({ error: "error, operation inexist" });
-
-    // const user = await User.findByPk(user_id, { include: Operation });
-
-    // const operation = user.operations?.filter((u) => u.id === operation_id);
     return res.json(operation);
   } catch (error) {
     next(error);
@@ -40,9 +36,9 @@ operationRoute.get("/:operation_id", async (req, res, next) => {
 operationRoute.post("/:user_id", async (req, res, next) => {
   const { user_id } = req.params;
   const { concept, amount, date, type } = req.body;
-
+  console.log(amount);
   try {
-    const user = await User.findByPk(user_id);
+    const user = await User.findByPk(user_id, { include: Operation });
     if (!user) return res.status(404).json({ error: "error, User incorrect" });
 
     const newOperation = await Operation.create({
@@ -51,16 +47,16 @@ operationRoute.post("/:user_id", async (req, res, next) => {
       date,
       type,
     });
-    const typeOperation = newOperation.type;
-    typeOperation === "entry"
-      ? (user.balance = Number(user.balance) + Number(amount))
-      : (user.balance = Number(user.balance) - Number(amount));
+    user.balance = Number(user.balance) + Number(amount);
 
     await user.update({
       balance: user.balance,
     });
-    newOperation.setUser(user);
-    return res.json(user);
+
+    await newOperation.setUser(user);
+    const userNew = await User.findByPk(user_id, { include: Operation });
+
+    return res.json(userNew);
   } catch (error) {
     next(error);
   }
@@ -82,7 +78,7 @@ operationRoute.patch("/", async (req, res, next) => {
       const type = operation.type;
       type === "entry"
         ? (user.balance = Number(user.balance) - oldAmount + Number(amount))
-        : (user.balance = Number(user.balance) + oldAmount - Number(amount));
+        : (user.balance = Number(user.balance) + oldAmount + Number(amount));
       await user.update({
         balance: user.balance,
       });
@@ -103,6 +99,7 @@ operationRoute.patch("/", async (req, res, next) => {
 operationRoute.delete("/", async (req, res, next) => {
   try {
     const { user_id, operation_id } = req.query;
+    console.log(user_id, operation_id);
     const user = await User.findByPk(user_id, { include: Operation });
     const operationDeleted = await Operation.findByPk(operation_id);
 
@@ -112,11 +109,14 @@ operationRoute.delete("/", async (req, res, next) => {
       Operation.destroy({ where: { id: operation_id } });
       type === "entry"
         ? (user.balance = user.balance - oldAmount)
-        : (user.balance = user.balance + oldAmount);
+        : (user.balance = user.balance - oldAmount);
       await user.update({
         balance: user.balance,
       });
-      res.json(user);
+
+      const newUser = await User.findByPk(user_id, { include: Operation });
+
+      res.json(newUser);
     } else {
       return res.json(new Error("error, operation not found"));
     }
