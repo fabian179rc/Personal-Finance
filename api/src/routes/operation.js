@@ -83,16 +83,16 @@ operationRoute.patch("/", async (req, res, next) => {
       type === "entry"
         ? (user.balance = Number(user.balance) - oldAmount + Number(amount))
         : (user.balance = Number(user.balance) + oldAmount - Number(amount));
+      await user.update({
+        balance: user.balance,
+      });
     }
-    await user.update({
-      balance: user.balance,
-    });
-    const newOperation = await operation.update({
+    await operation.update({
       concept,
       amount,
       date,
     });
-    res.json(newOperation);
+    res.json(user);
   } catch (error) {
     next(error);
   }

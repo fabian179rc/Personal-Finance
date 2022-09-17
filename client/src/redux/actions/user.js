@@ -5,19 +5,19 @@ export const GET_USER = "GET_USER",
   DELETE_USER = "DELETE_USER",
   CREATE_USER = "CREATE_USER";
 
-// /// ////////////////////////////////////////////////////////////////////////////////////////////
-
-export function getUser(id) {
-  return async function (dispatch) {
-    const response = await axios(`http://localhost:3001/user/${id}`);
-    dispatch({ type: GET_USER, payload: response.data });
-  };
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function getAllUsers() {
   return async function (dispatch) {
     const response = await axios("http://localhost:3001/user");
     dispatch({ type: GET_ALL_USERS, payload: response.data });
+  };
+}
+
+export function getUser(id) {
+  return async function (dispatch) {
+    const response = await axios(`http://localhost:3001/user/${id}`);
+    dispatch({ type: GET_USER, payload: response.data });
   };
 }
 
