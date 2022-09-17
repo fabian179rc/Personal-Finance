@@ -28,8 +28,8 @@ userRoute.get("/", async (req, res, next) => {
 userRoute.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    const user = await User.findByPk(id, { include: Operation }); //add includes operation
+    console.log(id);
+    const user = await User.findByPk(id, { include: Operation });
     if (!user) return res.status(404).json({ error: "error, User Not Found" });
     return res.json(user);
   } catch (error) {
