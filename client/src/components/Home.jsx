@@ -24,7 +24,7 @@ export default function Home() {
   );
 
   useEffect(() => {
-    if (user.id) dispatch(getUser(user.id));
+    dispatch(getUser(user.id));
   }, [newOperationModal, modifyOperationModal]);
 
   const lastOperation = user.operations?.slice(-10);
