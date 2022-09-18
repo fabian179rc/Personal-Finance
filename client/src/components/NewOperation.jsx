@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { newOperation, operationModal } from "../redux/actions/operation";
 import Swal from "sweetalert2";
+import style from "../Styles/NewOperation.module.css";
+import style2 from "../Styles/Home.module.css";
 
-export default function NewOperation({ typeinput }) {
-  const user_id = "c96b32be-ccd3-4435-8a8c-e6764823ef6e"; ////harcodeado
+export default function NewOperation({ typeinput, user_id }) {
   const dispatch = useDispatch();
   const [type, setType] = useState(typeinput);
   const [input, setInput] = useState({
@@ -63,41 +64,50 @@ export default function NewOperation({ typeinput }) {
 
   return (
     <>
-      <h2> {entry()}</h2>
+      <div className={style.container}>
+        <h2> {entry()}</h2>
 
-      <form onSubmit={(e) => send(e)}>
-        <div>
-          <label>Concept: </label>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="concept"
-            type="text"
-            min="3"
-            required
-          ></input>
-        </div>
-        <div>
-          <label>Amount: </label>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="amount"
-            type="number"
-            min="1"
-            required
-          ></input>
-        </div>
-        <div>
-          <label>Date: </label>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="date"
-            type="date"
-            required
-          />
-        </div>
-        <button onClick={(e) => close(e)}>Cancel</button>
-        <button type="submit">Save</button>
-      </form>
+        <form onSubmit={(e) => send(e)}>
+          <div>
+            <label>Concept: </label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="concept"
+              type="text"
+              min="3"
+              required
+            ></input>
+          </div>
+          <div>
+            <label>Amount: </label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="amount"
+              type="number"
+              min="1"
+              required
+            ></input>
+          </div>
+          <div>
+            <label>Date: </label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="date"
+              type="date"
+              required
+            />
+          </div>
+          <button
+            onClick={(e) => close(e)}
+            className={style2.buttonOperationEgress}
+          >
+            Cancel
+          </button>
+          <button type="submit" className={style2.buttonOperationEntry}>
+            Save
+          </button>
+        </form>
+      </div>
     </>
   );
 }

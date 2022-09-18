@@ -3,6 +3,8 @@ const { User, Operation } = db;
 const bcrypt = require("bcryptjs");
 const { Router } = require("express");
 const userRoute = Router();
+const jwt = require("jsonwebtoken");
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function hashPassword(password) {
@@ -41,19 +43,27 @@ userRoute.get("/:id", async (req, res, next) => {
 
 userRoute.post("/", async (req, res, next) => {
   const { email, username, img } = req.body;
+  console.log(email, username, img);
   const newpassword = "asd123";
   try {
-    const user = await User.findOne({ where: { email: email } });
-    if (user)
-      return res.status(404).json({ error: "error, User already exist" });
-
-    const newUser = await User.create({
-      email,
-      username,
-      img,
-      password: await hashPassword(newpassword),
+    let user = await User.findOne({
+      where: { email: email },
+      include: Operation,
     });
-    return res.json(newUser);
+
+    if (!user) {
+      user = await User.create({
+        email,
+        username,
+        img,
+        password: await hashPassword(newpassword),
+      });
+    }
+
+    const token = jwt.sign({ id: user.id }, config.SECRET, {
+      expiresIn: 86400,
+    });
+    return res.json({ token, user });
   } catch (error) {
     next(error);
   }

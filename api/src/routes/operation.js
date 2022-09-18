@@ -67,13 +67,24 @@ operationRoute.post("/:user_id", async (req, res, next) => {
 operationRoute.patch("/", async (req, res, next) => {
   const { user_id, operation_id } = req.query;
   const { concept, amount, date } = req.body;
+  // console.log(user_id, operation_id);
+  let newConcept, newAmount, newDate;
+  if (concept !== "") {
+    newConcept = concept;
+  }
+  if (amount !== 0) {
+    newAmount = amount;
+  }
+  if (date !== "") {
+    newDate = date;
+  }
 
   try {
     const user = await User.findByPk(user_id);
     const operation = await Operation.findByPk(operation_id);
     if (!operation)
       return res.status(404).json({ error: "error, operation inexist" });
-    if (amount) {
+    if (amount > 0) {
       const oldAmount = operation.amount;
       const type = operation.type;
       type === "entry"
@@ -84,11 +95,13 @@ operationRoute.patch("/", async (req, res, next) => {
       });
     }
     await operation.update({
-      concept,
-      amount,
-      date,
+      concept: newConcept,
+      amount: newAmount,
+      date: newDate,
     });
-    res.json(user);
+    const userModify = await User.findByPk(user_id, { include: Operation });
+    console.log(userModify);
+    res.json(userModify); /////////////al modificar 2 veces el amount no muestra operaciones si no recargas
   } catch (error) {
     next(error);
   }
