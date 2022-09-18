@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const { Router } = require("express");
 const userRoute = Router();
 const jwt = require("jsonwebtoken");
+// const config = require("../config/config");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -60,9 +61,10 @@ userRoute.post("/", async (req, res, next) => {
       });
     }
 
-    const token = jwt.sign({ id: user.id }, config.SECRET, {
-      expiresIn: 86400,
-    });
+    // const token = jwt.sign({ id: user.id }, config.SECRET, {
+    //   expiresIn: 86400,
+    // });
+    return res.json({ user });
     return res.json({ token, user });
   } catch (error) {
     next(error);
