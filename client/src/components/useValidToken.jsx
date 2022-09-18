@@ -1,14 +1,14 @@
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useNavigate } from "react-router-dom";
-// import { isValidToken } from "./../redux/actions/user";
+// import { isValidToken } from "../redux/actions/user";
 
 // const useValidToken = ({ navigate }) => {
 //   const dispatch = useDispatch();
-//   const activeUser = useSelector((state) => state.userReducer.user);
+//   const activeUser = useSelector((state) => state.user);
 //   const userId = activeUser.id;
-//   const token = useSelector((state) => state.userReducer.token);
-//   const validToken = useSelector((state) => state.userReducer.validToken);
+//   const token = useSelector((state) => state.token);
+//   const validToken = useSelector((state) => state.validToken);
 //   const navigateTo = useNavigate();
 
 //   useEffect(() => {

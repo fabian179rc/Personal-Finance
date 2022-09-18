@@ -3,8 +3,8 @@ const { User, Operation } = db;
 const bcrypt = require("bcryptjs");
 const { Router } = require("express");
 const userRoute = Router();
-const jwt = require("jsonwebtoken");
-// const config = require("../config/config");
+// const jwt = require("jsonwebtoken");
+const config = require("../config/config");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,8 +64,8 @@ userRoute.post("/", async (req, res, next) => {
     // const token = jwt.sign({ id: user.id }, config.SECRET, {
     //   expiresIn: 86400,
     // });
-    return res.json({ user });
-    return res.json({ token, user });
+    // return res.json(user);
+    return res.json(user);
   } catch (error) {
     next(error);
   }
@@ -106,5 +106,25 @@ userRoute.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+////////////////////////////////////////////////////////
+// userRoute.get("/:token", async (req, res) => {
+//   const { token } = req.params;
+//   const { id } = req.query;
+
+//   try {
+//     if (!id) {
+//       return res.send("token loss");
+//     } else {
+//       const tokenData = jwt.verify(token, config.SECRET);
+//       const user = await User.findByPk(tokenData.id);
+//       if (!user) return res.send(false);
+
+//       return res.send(tokenData.id === id);
+//     }
+//   } catch (err) {
+//     console.error(err.data);
+//   }
+// });
 
 module.exports = userRoute;

@@ -4,6 +4,9 @@ import {
   CREATE_USER,
   MODIFY_USER,
   DELETE_USER,
+  IS_VALID_TOKEN,
+  SET_TOKEN,
+  LOG_OUT,
 } from "../actions/user";
 
 import {
@@ -53,6 +56,23 @@ export default function userReducer(state = initialState, { type, payload }) {
       return { ...state, newOperationModal: !state.newOperationModal };
     case MODIFY_OPERATION_MODAL:
       return { ...state, modifyOperationModal: !state.modifyOperationModal };
+    case LOG_OUT:
+      return {
+        ...state,
+        user: {},
+      };
+    // case SET_TOKEN:
+    //   return { ...state, token: payload.token };
+
+    // case IS_VALID_TOKEN:
+    //   if (!payload)
+    //     return {
+    //       ...state,
+    //       validToken: payload,
+    //       user: {},
+    //       token: null,
+    //     };
+    //   return { ...state, validToken: payload };
 
     default:
       return state;
