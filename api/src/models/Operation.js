@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define("operation", {
     id: {
       type: DataTypes.UUID,
-      allowNull: false,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4, // para poder generar id nuevos uuidv4( que no choquen con los ID de la api)
     },
@@ -17,10 +16,10 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    // type: {
-    //   type: DataTypes.ENUM(),
-    //   allowNull: false,
-    // },
+    type: {
+      type: DataTypes.ENUM(["egress", "entry"]),
+      allowNull: false,
+    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
