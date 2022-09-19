@@ -84,12 +84,12 @@ operationRoute.patch("/", async (req, res, next) => {
     const operation = await Operation.findByPk(operation_id);
     if (!operation)
       return res.status(404).json({ error: "error, operation inexist" });
-    if (amount > 0) {
+    if (amount !== 0) {
       const oldAmount = operation.amount;
       const type = operation.type;
       type === "entry"
         ? (user.balance = Number(user.balance) - oldAmount + Number(amount))
-        : (user.balance = Number(user.balance) + oldAmount + Number(amount));
+        : (user.balance = Number(user.balance) - oldAmount + Number(amount));
       await user.update({
         balance: user.balance,
       });

@@ -3,11 +3,9 @@ import { useDispatch } from "react-redux";
 import { newOperation, operationModal } from "../redux/actions/operation";
 import Swal from "sweetalert2";
 import style from "../Styles/NewOperation.module.css";
-import style2 from "../Styles/Home.module.css";
 
 export default function NewOperation({ typeinput, user_id }) {
   const dispatch = useDispatch();
-  const [type, setType] = useState(typeinput);
   const [input, setInput] = useState({
     concept: "",
     amount: 0,
@@ -24,10 +22,10 @@ export default function NewOperation({ typeinput, user_id }) {
   function send(e) {
     e.preventDefault();
     let amountEgress = Number(input.amount);
-    if (type === "egress") amountEgress = -input.amount;
+    if (typeinput === "egress") amountEgress = -input.amount;
     let operation = {
       ...input,
-      type,
+      type: typeinput,
       amount: amountEgress,
     };
     dispatch(newOperation(user_id, operation));
@@ -46,28 +44,11 @@ export default function NewOperation({ typeinput, user_id }) {
     dispatch(operationModal());
   }
 
-  function changeOperation(e) {
-    e.preventDefault();
-    type === "egress" ? setType("entry") : setType("egress");
-  }
-
-  function entry() {
-    return (
-      <>
-        <label>New {type} operation </label>
-        <button onClick={(e) => changeOperation(e)}>
-          {type === "entry" ? "egress" : "entry"}
-        </button>
-      </>
-    );
-  }
-
   return (
     <>
       <div className={style.container}>
-        <h2> {entry()}</h2>
-
-        <form onSubmit={(e) => send(e)}>
+        <form onSubmit={(e) => send(e)} className={style.form}>
+          <h2> New {typeinput} operation </h2>
           <div>
             <label>Concept: </label>
             <input
@@ -97,15 +78,14 @@ export default function NewOperation({ typeinput, user_id }) {
               required
             />
           </div>
-          <button
-            onClick={(e) => close(e)}
-            className={style2.buttonOperationEgress}
-          >
-            Cancel
-          </button>
-          <button type="submit" className={style2.buttonOperationEntry}>
-            Save
-          </button>
+          <section className={style.sectionbutton}>
+            <button onClick={(e) => close(e)} className={style.buttoncancel}>
+              Cancel
+            </button>
+            <button type="submit" className={style.button}>
+              Save
+            </button>
+          </section>
         </form>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../redux/actions/user";
+import { getUser, logOut } from "../redux/actions/user";
 import NewOperation from "./NewOperation";
 import ModifyOperation from "./ModifyOperation";
 import Login from "./Login";
@@ -50,7 +50,10 @@ export default function Home() {
     e.preventDefault();
     setOptionsProfile(!optionsProfile);
   }
-  function logOut() {}
+  function buttonlogOut(e) {
+    dispatch(logOut());
+    setOptionsProfile(!optionsProfile);
+  }
   return (
     <>
       {newOperationModal && (
@@ -60,52 +63,61 @@ export default function Home() {
         <ModifyOperation operation_id={operationId} user_id={user.id} />
       )}
       {Object.keys(user).length !== 0 ? (
-        <div>
-          <div className={style.containerImg}>
-            <img
-              className={style.imgProfile}
-              src={user.img}
-              alt="UserImg"
-              onClick={(e) => optionProfile(e)}
-            />
-          </div>
-          {optionsProfile && <button onClick={logOut}>Logout</button>}
+        <div className={style.containerHome}>
+          <img
+            className={style.imgProfile}
+            src={user.img}
+            alt="UserImg"
+            onClick={(e) => optionProfile(e)}
+          />
+          {optionsProfile && (
+            <button onClick={(e) => buttonlogOut(e)} className={style.logout}>
+              Logout
+            </button>
+          )}
           <div className={style.container}>
-            <div>Balance: {user.balance}</div>
-            <div className={style.buttons}>
-              <button
-                onClick={(e) => newOperation(e)}
-                value="entry"
-                className={style.buttonOperationEntry}
-              >
-                Entry
-              </button>
-              <button
-                onClick={(e) => newOperation(e)}
-                value="egress"
-                className={style.buttonOperationEgress}
-              >
-                Egress
-              </button>
-            </div>
-            <div>
-              <p>Last Ten Operations:</p>
+            <section className={style.section}>
+              <span>Balance: $ {user.balance}</span>
+              <div className={style.buttons}>
+                <button
+                  onClick={(e) => newOperation(e)}
+                  value="entry"
+                  className={style.buttonOperation}
+                >
+                  Entry
+                </button>
+                <button
+                  onClick={(e) => newOperation(e)}
+                  value="egress"
+                  className={style.buttonOperation}
+                >
+                  Egress
+                </button>
+              </div>
+            </section>
+            <div className={style.operations}>
+              <p className={style.operation}>Last Ten Operations:</p>
               {lastOperation?.length ? (
                 lastOperation.map((operation, i) => (
-                  <ul key={i}>
-                    <li onClick={(e) => handleModifyOperation(e, operation.id)}>
-                      Concept: {operation.concept} Amount: {operation.amount}{" "}
-                      Date: {operation.date}
+                  <ul key={i} className={style.list}>
+                    <li
+                      onClick={(e) => handleModifyOperation(e, operation.id)}
+                      className={style.li}
+                    >
+                      <span>Concept: {operation.concept}</span>{" "}
+                      <span>Amount: {operation.amount} </span>
+                      <span>Date: {operation.date}</span>
                     </li>
                     <button
                       onClick={(e) => deleteOneOperation(e, operation.id)}
+                      className={style.buttonOperationdelete}
                     >
                       Delete
                     </button>
                   </ul>
                 ))
               ) : (
-                <p>No operations</p>
+                <p className={style.operation}>No operations</p>
               )}
             </div>
           </div>
