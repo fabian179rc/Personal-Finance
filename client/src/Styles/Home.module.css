@@ -1,34 +1,99 @@
-.containerImg{
-    display: flex;
-    justify-content: flex-end;
+.imgProfile {
+  width: 10vh;
+  height: 10vh;
+  border-radius: 50%;
+  position: absolute;
+  right: 1%;
+  top: 1.5%;
+  border: 1px solid black;
 }
-.imgProfile{
-    width: 10vh;
-    height: 10vh;
-    border-radius: 50%;
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(7, 110, 153, 1);
+  align-items: center;
+  width: 60%;
+  max-height: 90%;
+  padding: 1rem;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(7, 110, 153, 1);
-    align-items: center;   
-    width: 50%
-    
+.buttons {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
 }
-.buttons{
-    display: flex;
-    flex-direction: row;
-}
-.buttonOperationEgress{
-    display: flex;
-    margin: 5%;
-    border-radius: 10%;
-    background-color: rgb(189, 3, 3);
-}
-.buttonOperationEntry{
-    display: flex;
-    margin: 5%;
-    border-radius: 10%;
-    background-color: green;
 
+.buttonOperation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+  border-radius: 15px;
+  background-color: #3f37c9;
+  color: white;
+  height: 4vh;
+  width: 7vw;
+  cursor: pointer;
+}
+.containerHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97.5vh;
+  width: 100%;
+  background: rgb(49, 190, 247);
+  background: linear-gradient(
+    135deg,
+    rgba(49, 190, 247, 1) 0%,
+    rgba(79, 48, 147, 1) 100%
+  );
+}
+.section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.section span {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.5rem;
+}
+.list {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  cursor: pointer;
+  width: 50vw;
+}
+.li {
+  display: flex;
+  gap: 2rem;
+}
+.buttonOperationdelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 5%; */
+  border-radius: 15px;
+  background-color: red;
+  color: white;
+  height: 4vh;
+  width: 7vw;
+  cursor: pointer;
+}
+.operation {
+  font-size: 1.5rem;
+}
+.logout {
+  position: absolute;
+  right: 1.6%;
+  top: 15vh;
+  background-color: red;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+}
+.operations {
+  overflow-y: auto;
+  overflow-x: none;
 }

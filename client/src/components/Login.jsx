@@ -20,9 +20,10 @@ export default function Login() {
     dispatch(createUser(userObject));
   }
   return (
-    <>
-      <p>Login</p>
-      <div>
+    <div className={style.login}>
+      <section>
+        <p>Login</p>
+
         <GoogleOAuthProvider clientId="832028799556-l5odjjibtasaog2nqnskmtkcn0og6n3q.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(response) => {
@@ -33,7 +34,7 @@ export default function Login() {
             }}
           />
         </GoogleOAuthProvider>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }

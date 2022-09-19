@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import style from "../Styles/ModifyOperation.module.css";
 import {
   getOperation,
   modifyOperation,
   stateModifyOperationModal,
 } from "../redux/actions/operation";
-import Swal from "sweetalert2";
-import style from "../Styles/ModifyOperation.module.css";
 
 export default function ModifyOperation({ operation_id, user_id }) {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function ModifyOperation({ operation_id, user_id }) {
   function send(e) {
     e.preventDefault();
     let amountEgress = Number(input.amount);
-    if (operation?.type === "egress") amountEgress = -input.amount;
+    if (operation.type === "egress") amountEgress = -input.amount;
     let operationModified = {
       ...input,
       amount: amountEgress,
@@ -66,15 +66,8 @@ export default function ModifyOperation({ operation_id, user_id }) {
   return (
     <>
       <div className={style.container}>
-        <h2>Modify</h2>
-
-        <form onSubmit={(e) => send(e)}>
-          <div>
-            <h4>Current:</h4>
-            {operation.concept}
-            {operation.amount}
-            {operation.date}
-          </div>
+        <form onSubmit={(e) => send(e)} className={style.form}>
+          <center>Modify</center>
           <div>
             <label>Concept: </label>
             <input
@@ -97,8 +90,14 @@ export default function ModifyOperation({ operation_id, user_id }) {
             <label>Date: </label>
             <input onChange={(e) => handleChange(e)} name="date" type="date" />
           </div>
-          <button onClick={(e) => close(e)}>Cancel</button>
-          <button type="submit">Save</button>
+          <section className={style.sectionbutton}>
+            <button onClick={(e) => close(e)} className={style.buttoncancel}>
+              Cancel
+            </button>
+            <button type="submit" className={style.button}>
+              Save
+            </button>
+          </section>
         </form>
       </div>
     </>
