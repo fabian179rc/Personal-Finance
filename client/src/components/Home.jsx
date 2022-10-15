@@ -124,10 +124,16 @@ export default function Home() {
                       onClick={(e) => handleModifyOperation(e, operation.id)}
                       className={style.li}
                     >
-                      <span>Concept: {operation.concept}</span>{" "}
-                      <span>Amount: {operation.amount} </span>
                       <span>
-                        Date: {new Date(operation.date).toLocaleDateString()}
+                        <strong>Concept:</strong> {operation.concept}
+                      </span>
+                      <span>
+                        <strong>Amount: </strong>
+                        {operation.amount}{" "}
+                      </span>
+                      <span>
+                        <strong>Date: </strong>
+                        {new Date(operation.date).toLocaleDateString()}
                       </span>
                     </li>
                     <button

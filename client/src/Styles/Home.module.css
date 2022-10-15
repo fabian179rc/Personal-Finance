@@ -68,6 +68,7 @@
   justify-content: center;
   width: 100%;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 .list {
   display: flex;
@@ -93,6 +94,8 @@
 }
 .operation {
   font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  font-weight: 600;
 }
 .logout {
   position: absolute;
@@ -106,4 +109,6 @@
 .operations {
   overflow-y: auto;
   overflow-x: none;
+  color: #000000;
+  font-weight: 500;
 }
