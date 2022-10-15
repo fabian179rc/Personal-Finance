@@ -3,9 +3,11 @@
   height: 10vh;
   border-radius: 50%;
   position: absolute;
-  right: 1%;
-  top: 1.5%;
-  border: 1px solid black;
+  right: 2%;
+  top: 3%;
+  box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
+  -moz-box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
 }
 .container {
   display: flex;
@@ -16,6 +18,9 @@
   max-height: 90%;
   padding: 1rem;
   border-radius: 10px;
+  box-shadow: 0px 0px 26px 14px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 0px 26px 14px rgba(0, 0, 0, 0.68);
+  -moz-box-shadow: 0px 0px 26px 14px rgba(0, 0, 0, 0.68);
 }
 .buttons {
   display: flex;
