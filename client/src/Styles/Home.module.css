@@ -8,11 +8,16 @@
   box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
   -webkit-box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
   -moz-box-shadow: 0px 1px 22px 1px rgba(0, 0, 0, 0.68);
+  cursor: pointer;
 }
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #043263ae;
+  background: linear-gradient(
+    135deg,
+    rgb(42, 157, 203) 0%,
+    rgb(67, 41, 123) 100%
+  );
   align-items: center;
   width: 60%;
   max-height: 90%;
@@ -31,11 +36,12 @@
 .buttonOperation {
   display: flex;
   justify-content: center;
+
   align-items: center;
   margin: 5%;
   border-radius: 15px;
   background-color: #3f37c9;
-  color: white;
+  color: rgba(255, 255, 255, 0.849);
   height: 4vh;
   width: 7vw;
   cursor: pointer;
@@ -46,11 +52,10 @@
   align-items: center;
   height: 100vh;
   width: 100%;
-  background: rgb(49, 190, 247);
   background: linear-gradient(
     135deg,
-    rgba(49, 190, 247, 1) 0%,
-    rgba(79, 48, 147, 1) 100%
+    rgb(42, 157, 203) 0%,
+    rgb(67, 41, 123) 100%
   );
 }
 .section {
@@ -79,10 +84,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 5%; */
   border-radius: 15px;
-  background-color: red;
-  color: white;
+  background-color: rgba(216, 5, 5, 0.722);
+  color: rgba(255, 255, 255, 0.849);
   height: 4vh;
   width: 7vw;
   cursor: pointer;
@@ -92,11 +96,11 @@
 }
 .logout {
   position: absolute;
-  right: 1.6%;
+  right: 2.4%;
   top: 15vh;
-  background-color: red;
+  background-color: rgba(216, 5, 5, 0.722);
+  color: rgba(255, 255, 255, 0.849);
   border-radius: 15px;
-  color: white;
   cursor: pointer;
 }
 .operations {
