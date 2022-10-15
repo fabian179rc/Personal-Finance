@@ -126,7 +126,9 @@ export default function Home() {
                     >
                       <span>Concept: {operation.concept}</span>{" "}
                       <span>Amount: {operation.amount} </span>
-                      <span>Date: {operation.date}</span>
+                      <span>
+                        Date: {new Date(operation.date).toLocaleDateString()}
+                      </span>
                     </li>
                     <button
                       onClick={(e) => deleteOneOperation(e, operation.id)}
