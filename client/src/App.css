@@ -1,0 +1,25 @@
+.container {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+}
+
+.img {
+  position: absolute;
+  background-image: url(/src/img/loadingInit.gif);
+  height: 60vh;
+  width: 60%;
+  background-repeat: no-repeat;
+  top: 25%;
+  left: 38%;
+}
+
+@media screen and (max-width: 500px) {
+  .img {
+    height: 60vh;
+    width: 100%;
+    top: 23%;
+
+    left: 2%;
+  }
+}

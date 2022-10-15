@@ -3,6 +3,8 @@ import React from "react";
 import Home from "./components/Home";
 // import Home from "./components/NewOperation";
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import "./normalize.css";
 
 function App() {
   return (

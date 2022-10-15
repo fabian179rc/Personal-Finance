@@ -24,7 +24,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "require": "^2.4.20",
-    "sweetalert2": "^11.4.33",
+    "sweetalert2": "^11.5.2",
     "vite-node": "^0.23.2"
   },
   "devDependencies": {
