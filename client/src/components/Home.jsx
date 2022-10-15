@@ -11,6 +11,7 @@ import {
   operationModal,
   stateModifyOperationModal,
 } from "../redux/actions/operation";
+import Swal from "sweetalert2";
 
 export default function Home() {
   // useValidToken({ navigate: true });
@@ -37,7 +38,26 @@ export default function Home() {
 
   function deleteOneOperation(e, operation_id) {
     e.preventDefault();
-    dispatch(deleteOperation(user.id, operation_id));
+    Swal.fire({
+      background:
+        "linear-gradient( 135deg, rgba(7, 110, 153, 1) 0%, rgba(43, 0, 110, 1) 100% )",
+      color: "white",
+      title: "do you want to delete the operation?",
+      showDenyButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteOperation(user.id, operation_id));
+        Swal.fire({
+          background:
+            "linear-gradient( 135deg, rgba(7, 110, 153, 1) 0%, rgba(43, 0, 110, 1) 100% )",
+          color: "white",
+          title: "success",
+          text: "Operation Deleted!",
+          icon: "success",
+        });
+      }
+    });
   }
 
   function handleModifyOperation(e, operation_id) {
