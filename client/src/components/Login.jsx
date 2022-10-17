@@ -12,6 +12,7 @@ export default function Login() {
   function createOrGetUserGoogle(response) {
     const decoded = jwt_decode(response.credential);
     const { email, name, picture } = decoded;
+    console.log(decoded);
     const userObject = {
       username: name,
       email,
