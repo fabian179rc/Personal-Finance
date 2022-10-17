@@ -22,7 +22,9 @@ export default function Login() {
   return (
     <div className={style.login}>
       <section>
-        <p>Login</p>
+        <p>
+          <strong>Login</strong>
+        </p>
 
         <GoogleOAuthProvider clientId="832028799556-l5odjjibtasaog2nqnskmtkcn0og6n3q.apps.googleusercontent.com">
           <GoogleLogin

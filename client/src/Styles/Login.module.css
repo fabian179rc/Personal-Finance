@@ -13,8 +13,8 @@
   );
 }
 .login p {
-  font-size: 2rem;
-  letter-spacing: 0.2rem;
+  font-size: 1.5rem;
+  /* letter-spacing: 0.2rem; */
 }
 .login section {
   display: flex;
