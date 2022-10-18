@@ -2,8 +2,10 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 const { PORT } = process.env;
 
+const port = PORT || 4000;
+
 conn.sync({ force: false }).then(() => {
-  server.listen(PORT, () => {
-    console.log("%s listening at 3001");
+  server.listen(port, () => {
+    console.log("%s listening at 4000");
   });
 });
