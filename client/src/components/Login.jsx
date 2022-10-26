@@ -27,7 +27,7 @@ export default function Login() {
           <strong>Login</strong>
         </p>
 
-        <GoogleOAuthProvider clientId="832028799556-l5odjjibtasaog2nqnskmtkcn0og6n3q.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="467763603477-93gu353fq0valackta4k6b5jn5dnq8p9.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(response) => {
               createOrGetUserGoogle(response);
