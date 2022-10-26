@@ -6,6 +6,6 @@ const port = PORT || 4000;
 
 conn.sync({ force: false }).then(() => {
   server.listen(port, () => {
-    console.log("%s listening at 4000");
+    console.log("% listening at 4000");
   });
 });
